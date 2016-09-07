@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
-
 from logservice import models
 from logservice.models.meta import Base
 from sqlalchemy.orm import sessionmaker
+from logservice.handlers.sqlalchemy_handler import SQLAlchemyHandler
 
 
 class InitializeDb(object):
@@ -28,7 +28,7 @@ class InitializeDb(object):
         logger.setLevel(logging.DEBUG)
 
         # create console handler and set level to debug
-        ch = logging.StreamHandler()
+        ch = SQLAlchemyHandler()
         ch.setLevel(logging.DEBUG)
 
         # create formatter
