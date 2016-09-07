@@ -24,4 +24,3 @@ class Log(Base):
 
     def __repr__(self):
         return "<Log: %s - %s>" % (self.created_at.strftime('%m/%d/%Y-%H:%M:%S'), self.msg[:50])
-Z
