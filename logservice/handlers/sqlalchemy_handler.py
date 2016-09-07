@@ -20,7 +20,7 @@ class SQLAlchemyHandler(logging.Handler):
         trace = None
         exc = record.__dict__['exc_info']
         if exc:
-            trace = traceback.format_exc(exc)
+            trace = logging.Formatter('', exc).format(record)
         log = Log(
             logger=record.__dict__['name'],
             level=record.__dict__['levelname'],
