@@ -6,19 +6,23 @@ from sqlalchemy.orm import sessionmaker
 
 
 class InitializeDb(object):
-    def __init__(self, connection_string):
+    def __init__(self, connection_string, dbsession=None):
         self.connection_string = connection_string
+        self.dbsession = dbsession
 
     def initialize_db(self):
-        engine = create_engine(self.connection_string)
-        Base.metadata.drop_all(engine)
-        Base.metadata.create_all(engine)
+        if self.dbsession is None:
+            engine = create_engine(self.connection_string)
+            Base.metadata.drop_all(engine)
+            Base.metadata.create_all(engine)
 
-        # create a configured "Session" class
-        Session = sessionmaker(bind=engine)
+            # create a configured "Session" class
+            Session = sessionmaker(bind=engine)
 
-        # create a Session
-        dbsession = Session()
+            # create a Session
+            dbsession = Session()
+        else:
+            dbsession = self.dbsession
 
         # http://docs.python.org/howto/logging.html#configuring-logging
         import logging

@@ -20,9 +20,9 @@ tests_requires = [
     'pytest-cov',
 ]
 
-setup(name='LogService',
+setup(name='PyramidLogService',
       version=0.1,
-      description='LogService',
+      description='Pyramid LogService',
       long_description=README,
       classifiers=[
           "Programming Language :: Python",
